@@ -226,8 +226,11 @@ export const singleItemData = {
   id: 1,
   title: "Luxury Apartment in Downtown",
   price: 12500000,
-  img: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-    "https://images.unsplash.com/photo-1505691938895-1758d7feb511"
+  images: [
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    "https://tse4.mm.bing.net/th/id/OIP.0a2TAV6PkgM9yISqbBLEgAHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "https://thaka.bing.com/th/id/OIP.JoMSDDftUUA816Go9j68HwHaE8?w=259&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3",
+    "https://thaka.bing.com/th/id/OIP.05XeN8nNBoC3RJBhXP2IiQHaFb?w=265&h=195&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
   ],
   bedroom: 3,
   bathroom: 2,
@@ -239,4 +242,10 @@ export const singleItemData = {
   bus: "100m away",
   restaurant: "250m away",
   description: "description",
+}
+
+export const userData = {
+  id : 1 , 
+  name : "hanzala baawny",
+  img : "https://avatars.githubusercontent.com/u/175537336?v=4"
 }

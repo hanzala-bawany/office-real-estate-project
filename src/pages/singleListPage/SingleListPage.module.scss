@@ -1,0 +1,34 @@
+.singleListPage{
+    display: flex;
+    height: calc(100vh - 100px);
+
+    .leftSide{
+        flex: 3;
+        height: 100%;
+        
+        .wrapper{
+            padding-right: 30px;
+            background-color: antiquewhite;
+            height: 100%;
+            width: 100%;
+
+            // .infoSection{
+            // }
+
+        }
+    }   
+
+    .rightSide{
+        flex: 2;
+        height: 100%;
+        
+        .wrapper{
+            background-color: rgb(252, 245, 237);
+            height: 100%;
+            width: 100%;
+            padding-left: 30px;
+  
+
+        }
+    }
+}
