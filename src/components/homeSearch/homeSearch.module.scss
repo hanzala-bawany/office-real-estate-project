@@ -1,0 +1,87 @@
+@use "../../responsive.scss" as *;
+
+.homeSearch {
+
+    // width: 90%;
+    // padding-right: 100px;
+
+    .searchType {
+
+        button {
+            padding: 6px 18px;
+            cursor: pointer;
+            text-transform: capitalize;
+            border: 1px solid gray;
+
+            &.active {
+                background-color: black;
+                color: white;
+            }
+
+            &:first-child {
+                border-top-left-radius: 5px;
+                border-right: none;
+            }
+
+            &:last-child {
+                border-top-right-radius: 5px;
+                border-left: none;
+            }
+        }
+
+    }
+
+    .searchBar {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid gray;
+
+        input{
+            width: 155px;
+            padding: 7px 10px;
+            border: none;
+
+            @include md{
+
+                width: 145px;
+                
+                &:nth-child(2),&:nth-child(3){
+                    width: 90px;
+                }
+            }
+
+            @include sm{
+
+                width: 165px;
+                
+                &:nth-child(2),&:nth-child(3){
+                    width: 125px;
+                }
+            }
+
+            @include exsm{
+
+                font-size: 14px;
+                width: 135px;
+                
+                &:nth-child(2),&:nth-child(3){
+                    width: 85px;
+                }
+            }
+
+        }
+     
+
+        button{
+            flex: 1;
+            cursor: pointer;
+            background-color: #fece51;
+            border: none;
+
+            .seacrhIcon{
+                font-size: 22px;
+            }
+        }
+    }
+
+}

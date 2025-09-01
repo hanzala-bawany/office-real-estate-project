@@ -1,0 +1,122 @@
+@use "../../responsive.scss" as *;
+
+.listItem {
+    width: 100%;
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 180px;
+
+    .imgConatiner {
+        height: 180px;
+        flex: 2;
+
+        img {
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+        }
+    }
+
+    .contentConatiner {
+        height: 100%;
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 8px;
+
+        @include exsm {
+            font-size: 14px;
+        }
+
+        .titleText {
+            text-transform: capitalize;
+            cursor: pointer;
+            transition: all 0.4s ease;
+
+            @include sm {
+                font-size: 18px;
+            }
+
+            a {
+                color: black;
+                text-decoration: none;
+                transition: all 0.4s ease;
+
+                &:hover {
+                    color: gray;
+                    transform: scale(1.01);
+                }
+            }
+
+            &:hover {
+                transform: scale(1.01);
+            }
+
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+            color: gray;
+        }
+
+        .price {
+            background-color: #fece51;
+            width: fit-content;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+
+        .featuredContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .bedbathConatiner {
+                display: flex;
+                column-gap: 12px;
+
+                div {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 5px;
+                    background-color: rgb(234, 232, 232);
+                    padding: 3px 6px;
+
+                    .icon {
+                        color: gray;
+                    }
+                }
+            }
+
+            .icons {
+                display: flex;
+                column-gap: 12px;
+
+                @include lg {
+                    flex-direction: column;
+                    row-gap: 10px;
+                }
+
+                div {
+                    border: 1px solid;
+                    padding: 4px 6px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: gray;
+                    cursor: pointer;
+
+                    @include exsm {
+                        padding: 3px 4px;
+                    }
+                }
+            }
+        }
+    }
+
+}

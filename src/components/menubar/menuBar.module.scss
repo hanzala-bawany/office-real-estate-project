@@ -1,0 +1,17 @@
+.menuBar{
+    position: absolute;
+    top: 0px;
+    height: 100vh !important;
+    margin-left: auto;         // ✅ sidebar ko right push karega
+    transition: "all 0.3s ease";
+
+    .menuIcon{
+        display: flex;
+        justify-content: flex-end;
+        padding: 8px;
+    }
+
+    .menu{
+        // display: none;
+    }
+}

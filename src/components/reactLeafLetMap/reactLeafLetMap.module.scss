@@ -1,0 +1,13 @@
+@use "../../responsive.scss" as *;
+
+.map{
+    height: 100%;
+    width: 100%;
+
+    @include sm{
+        // display: none;
+        // position: absolute;
+        // top: 0px;
+        // right: 0px;
+    }
+}

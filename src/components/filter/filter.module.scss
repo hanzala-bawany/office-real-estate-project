@@ -1,0 +1,86 @@
+@use "../../responsive.scss" as *;
+
+.filter{
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    background-color: rgb(247, 247, 247);
+
+    &>h2{
+        text-transform: capitalize;
+        @include sm{
+            font-size: 20px;   
+        }
+    }
+
+    .inputs{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+
+        .top{
+            display: flex;
+            flex-direction: column;
+            row-gap: 5px;
+
+            @include sm{
+                font-size: 14px;   
+            }
+        }
+
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+            column-gap: 5px;
+
+            .item{
+                display: flex;
+                flex-direction: column;
+                row-gap: 5px;
+
+                @include sm{
+                    font-size: 14px;   
+                }
+
+                input{
+
+                    @include lg{
+                        width: 80px !important;     
+                    }
+                
+                    @include exsm{
+                        width: 55px !important;     
+                    }
+                }
+    
+            }
+
+            button{
+                padding: 0px 12px;
+                background-color: #fece51;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;                
+
+                @include sm{
+                    padding: 0px 8px;
+                }
+                
+                .seacrhIcon{
+                    font-size: 24px;
+
+                    @include sm{
+                        font-size: 20px;
+                    }
+        
+                    @include exsm{
+                        font-size: 18px;                   
+                    }
+                }
+            }
+        }
+    }
+}

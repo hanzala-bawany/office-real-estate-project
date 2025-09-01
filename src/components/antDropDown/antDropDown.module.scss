@@ -1,0 +1,27 @@
+@use "../../responsive.scss" as *;
+
+.property{
+
+    width: 100px;
+
+    @include lg{
+        width: 80px !important;     
+    }
+
+    @include exsm{
+        width: 65px !important;     
+    }
+}
+
+.type{
+
+    width: auto;
+
+    @include lg{
+        width: 60px !important;     
+    }
+
+    @include exsm{
+        width: 54px !important;     
+    }
+}
