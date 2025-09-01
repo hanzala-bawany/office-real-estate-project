@@ -220,3 +220,23 @@ export const data = [
     longitude: 72.04,
   },
 ];
+
+
+export const singleItemData = {
+  id: 1,
+  title: "Luxury Apartment in Downtown",
+  price: 12500000,
+  img: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    "https://images.unsplash.com/photo-1505691938895-1758d7feb511"
+  ],
+  bedroom: 3,
+  bathroom: 2,
+  size: 861,
+  latitude: 24.8607,
+  longitude: 67.0011,
+  address: "Clifton, Karachi",
+  school: "300m away",
+  bus: "100m away",
+  restaurant: "250m away",
+  description: "description",
+}
