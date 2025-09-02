@@ -87,6 +87,10 @@
                     background-color: rgb(234, 232, 232);
                     padding: 3px 6px;
 
+                    @include exsm {
+                     flex-direction: column;
+                    }
+
                     .icon {
                         color: gray;
                     }

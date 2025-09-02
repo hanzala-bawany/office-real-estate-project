@@ -1,5 +1,6 @@
 import ImgSection from '../../components/imgSection/ImgSection'
 import { singleItemData } from '../../utills/dummyData'
+import { userData } from '../../utills/dummyData'
 import s from './SingleListPage.module.scss'
 
 
@@ -21,15 +22,33 @@ const SingleListPage = () => {
             <div className={s.topInfo}>
 
               <div className={s.itemInfo}>
+
+                <h2>
+                  {singleItemData.title}
+                </h2>
+                <div className={s.singleItemLocation}>
+                  Rs. {singleItemData.location}
+                </div>
+                <div className={s.price}>
+                  {singleItemData.price}
+                </div>
+
               </div>
 
               <div className={s.userInfo}>
+
+                <div className={s.userImgWrapper}>
+                  <img width={200} src={userData.img} alt="" />                  
+                </div>
+
+                <p>{userData.name}</p>
+
               </div>          
 
             </div>
 
             <div className={s.bottomInfo}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam animi recusandae fuga nisi, distinctio soluta! Quos esse possimus excepturi praesentium cum optio mollitia quisquam deleniti quis est! Consequuntur nisi corrupti eaque illum.
+              {singleItemData.description}
             </div>
 
           </div>

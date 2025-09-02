@@ -29,6 +29,10 @@
             @include sm{
                 font-size: 14px;   
             }
+
+            @include exsm{
+                font-size: 12px !important;     
+            }
         }
 
         .bottom{
@@ -43,6 +47,10 @@
 
                 @include sm{
                     font-size: 14px;   
+                }
+
+                @include exsm{
+                    font-size: 12px !important;     
                 }
 
                 input{

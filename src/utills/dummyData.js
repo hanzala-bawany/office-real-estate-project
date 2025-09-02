@@ -246,6 +246,6 @@ export const singleItemData = {
 
 export const userData = {
   id : 1 , 
-  name : "hanzala baawny",
+  name : "hanzala bawany",
   img : "https://avatars.githubusercontent.com/u/175537336?v=4"
 }
