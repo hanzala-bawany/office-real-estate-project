@@ -1,6 +1,6 @@
 import style from "./navbar.module.scss"
 import logo from "../../assets/logo.png"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { AiOutlineMenu } from 'react-icons/ai';
 import { AiTwotoneCloseCircle } from 'react-icons/ai';
 import { useState } from "react";
@@ -8,6 +8,7 @@ import { useState } from "react";
 const Navbar = () => {
 
   const [openMenu, setOpenMenu] = useState(false)
+  const user = true
 
   return (
     <div className={style.navbar}>
@@ -38,14 +39,38 @@ const Navbar = () => {
       </div>
       <div className={style.rightNav}>
 
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? `${style.active} ${style.signin}` : style.signin
-          } to="/signin">Sign in</NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? `${style.active} ${style.signup}` : style.signup
-          } to="/contact">Sign up</NavLink>
+        {
+          user ?
+            <div className={style.profileConatiner}>
+              
+              <img src="https://avatars.githubusercontent.com/u/175537336?v=4" alt="" />
+
+              <span className={style.name}>Hanzla bawany</span>
+
+              <Link to="/profile">
+                <span className={style.profile}>
+                  Profile
+                  <div className={style.notification}>3</div>
+                </span>
+              </Link>
+
+            </div>
+            :
+            <>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `${style.active} ${style.signin}` : style.signin
+                } to="/signin">
+                Sign in
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `${style.active} ${style.signup}` : style.signup
+                } to="/contact">
+                Sign up
+              </NavLink>
+            </>
+        }
 
         <AiOutlineMenu className={style.menuIcon} onClick={() => setOpenMenu(true)} />
 

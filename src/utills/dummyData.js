@@ -241,7 +241,7 @@ export const singleItemData = {
   school: "300m away",
   bus: "100m away",
   restaurant: "250m away",
-  description: "description",
+  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem placeat officiis temporibus totam nam neque, cum exercitationem est, quos quo similique obcaecati eveniet molestias inventore aperiam perferendis, facilis dolore quae voluptates ducimus.",
 }
 
 export const userData = {
