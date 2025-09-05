@@ -171,7 +171,6 @@ $homeSideColor : rgb(252, 245, 237);
 
             .profile{
                 background-color: #fece51;
-                margin: 0px 20px; 
                 padding: 10px 20px;
                 position: relative;
                 cursor: pointer;
@@ -189,6 +188,10 @@ $homeSideColor : rgb(252, 245, 237);
                     top: -6px;
                     right: -6px;
 
+                }
+
+                @include md{
+                    margin: 0px 0px; 
                 }
 
                 @include sm{

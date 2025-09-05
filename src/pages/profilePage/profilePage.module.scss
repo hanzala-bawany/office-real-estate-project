@@ -1,0 +1,134 @@
+@use "../../responsive.scss" as *;
+
+.profilePage {
+    display: flex;
+    height: calc(100vh - 100px);
+
+    @include md {
+        flex-direction: column;
+    }
+
+    .leftSide {
+        flex: 3;
+        height: 100%;
+
+        @include md {
+            height: fit-content;
+            flex: none;
+        }
+
+        .wrapper {
+            padding-right: 30px;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 40px;
+            overflow-y: auto;
+            padding-bottom: 20px;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+    
+            &::-webkit-scrollbar-track {
+                background: white;
+                border-radius: 10px;
+            }
+    
+            &::-webkit-scrollbar-thumb {
+                // background: #fece51;
+                background: rgba(128, 128, 128, 0.365);
+                border-radius: 10px;
+            }
+
+            @include md {
+                overflow-y: initial;
+                padding-right: 0px;
+            }
+
+            .sameConatiner{
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                align-items: center;
+
+                span{
+                    text-transform: capitalize;
+                    font-size: 20px;
+                }
+
+                button{
+                    padding: 8px 10px;
+                    background-color: #fece51;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                }
+            }
+
+            .userInfo{
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+
+                .userPic{
+                    display: flex;
+                    align-items: center;
+                    column-gap: 10px;
+                    text-transform: capitalize;
+
+                    span{
+                        font-weight: bold;
+                    }
+
+                    img{
+                        width: 32px;
+                        border-radius: 100%;
+                    }
+                }
+
+                .userName,.userEmail{
+                    display: flex;
+                    align-items: center;
+                    column-gap: 10px;
+                    
+                    span{
+                        text-transform: capitalize;
+                        font-weight: bold;
+                    }
+
+                    .userNameP{
+                        text-transform: capitalize;
+                    }
+                }
+
+            }
+
+
+        }
+    }
+
+    .rightSide {
+        flex: 2;
+        height: 100%;
+
+        @include md {
+            height: fit-content;
+            flex: none;
+        }
+
+        .wrapper {
+            padding: 0px 15px;
+            height: 100%;
+            width: 100%;
+            background-color: rgb(252, 245, 237);
+
+            @include md {
+                overflow-y: initial;
+                padding-right: 0px;
+            }
+        }
+    }
+
+}
