@@ -28,6 +28,11 @@
             .title {
                 text-transform: capitalize;
                 font-size: 38px;
+
+                @include sm {
+                    font-size: 30px;
+                }
+
             }
 
 
@@ -45,9 +50,9 @@
                         font-size: 28px;
                         font-weight: 600;
 
-                        @include sm{
+                        @include sm {
                             font-size: 24px;
-                            font-weight: 500 
+                            font-weight: 500
                         }
                     }
 
@@ -55,8 +60,8 @@
                         text-transform: capitalize;
                         text-align: center;
 
-                        @include sm{
-                            font-size: 14px; 
+                        @include sm {
+                            font-size: 14px;
                         }
                     }
                 }
