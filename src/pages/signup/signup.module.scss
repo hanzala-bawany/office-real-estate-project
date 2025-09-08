@@ -1,0 +1,72 @@
+.loginPage {
+    // height: calc(100vh - 100px) ;
+    height: fit-content ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.1);
+      margin : 10vh 0px;
+    }
+    
+    .heading {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  
+    .form{
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+
+      div{
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+
+    .linksRow {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin: 10px 0px;
+      }
+      
+      .forgotPass{
+        color: #007BFF;
+        text-decoration: none;
+      }
+      .forgotPass:hover{
+        text-decoration: underline;
+      }
+    
+      .link {
+        color: #555;
+        text-decoration: none;
+      }
+      
+      .link .joinNowBtnInForm{
+        color: #007BFF;
+        text-decoration: none;
+      }
+      .link .joinNowBtnInForm:hover{
+        text-decoration: underline;
+      }
+
+    }
+
+  }
+  
+  
+
+  
+
+  

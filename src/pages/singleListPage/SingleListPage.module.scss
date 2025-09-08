@@ -155,6 +155,11 @@
                         p {
                             text-transform: capitalize;
                             font-weight: bold;
+
+                            @include exsm {
+                                font-size: 14px;
+                            }
+                        
                         }
 
                         span {
@@ -162,6 +167,10 @@
 
                             &::first-letter {
                                 text-transform: uppercase !important;
+                            }
+
+                            @include exsm {
+                                font-size: 13px;
                             }
                         }
 
@@ -186,6 +195,10 @@
 
                         div {
                             text-align: center;
+
+                            @include exsm {
+                                font-size: 13px;
+                            }
                         }
                     }
 
@@ -199,16 +212,23 @@
                 justify-content: space-between;
 
                 @include exsm {
+
                     .item {
                         font-size: 14px;
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 5px;
+                        align-items: center;
                     }
 
                     p {
                         font-size: 14px;
+                        text-align: center;
                     }
 
                     span {
                         font-size: 12px;
+                        text-align: center;
                     }
                 }
             }
@@ -234,6 +254,11 @@
                     border-radius: 5px;
                     column-gap: 5px;
                     cursor: pointer;
+
+                @include exsm{
+                    font-size: 14px;
+                }
+
                 }
             }
 

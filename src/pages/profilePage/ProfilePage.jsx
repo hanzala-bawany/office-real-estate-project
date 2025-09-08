@@ -4,6 +4,8 @@ import ProfileItemsList from "../../components/profileItemsList/ProfileItemsList
 import MessagesAndText from "../../components/messagesAndText/MessagesAndText"
 
 const ProfilePage = () => {
+
+  
   return (
     <div className={s.profilePage}>
 

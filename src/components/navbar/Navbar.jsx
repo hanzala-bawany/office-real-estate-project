@@ -8,7 +8,8 @@ import { useState } from "react";
 const Navbar = () => {
 
   const [openMenu, setOpenMenu] = useState(false)
-  const user = true
+  // const user = true
+  const user = false
 
   return (
     <div className={style.navbar}>
@@ -66,7 +67,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) =>
                   isActive ? `${style.active} ${style.signup}` : style.signup
-                } to="/contact">
+                } to="/signup">
                 Sign up
               </NavLink>
             </>
