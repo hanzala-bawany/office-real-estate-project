@@ -27,6 +27,12 @@
     flex-direction: column;
     row-gap: 15px;
   }
+
+  .inputConatiner{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+  }
   
   
   .linksRow {

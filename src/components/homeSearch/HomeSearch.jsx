@@ -23,7 +23,7 @@ const HomeSearch = () => {
 
       <div className={s.searchType}>
         {
-          searchTypes.map((type)=> <button onClick={() => handleType(type)} className={type == searchQuery.type ? s.active : ""} > {type} </button> )
+          searchTypes.map((type)=> <button key={type} onClick={() => handleType(type)} className={type == searchQuery.type ? s.active : ""} > {type} </button> )
         }
       </div>
       <div className={s.searchBar}>

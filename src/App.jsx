@@ -7,6 +7,7 @@ import SingleListPage from './pages/singleListPage/SingleListPage'
 import ProfilePage from './pages/profilePage/ProfilePage'
 import Signup from './pages/signup/Signup'
 import Signin from './pages/signin/Signin'
+import EmailVerification from './pages/emailVerification/EmailVerification'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
+        <Route path='/emailVerification' element={<EmailVerification />} />
 
       </Routes>
     </>

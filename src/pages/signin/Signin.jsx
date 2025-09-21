@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { EyeInvisibleOutlined, EyeTwoTone, UserOutlined } from '@ant-design/icons';
 import { Input, Button, Flex } from 'antd';
+import base_url from '../../utills/url';
+import axios from 'axios';
 
 
 
@@ -15,36 +17,34 @@ const Signin = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   // const { dispatch, loading, error } = useContext(authContext)
   const navigate = useNavigate()
 
   const loginBtnHandler = async (e) => {
 
-    console.log("login pem click hua",{email , password});
+    console.log("login pem click hua", { email, password });
     e.preventDefault()
-    // dispatch({ type: "login_start" })
 
-    // loading && toast.info('Please wait...');
-
-    // try {
-    //   const res = await axios.post("http://localhost:8000/auth/login", { email, password } , {
-    //     withCredentials: true
-    //   })
-    //   console.log(res,  "login user res in login.jsx");
-    //   dispatch({ type: "login_success", payLoad: res?.data?.data?.loginUser?._doc })
+    try {
+      setError(false)
+      setLoading(true)
+      const res = await axios.post(`${base_url}/api/auth/login`, { email, password })
+      setLoading(false)
+      console.log(res, "login user res in login.jsx");
       navigate("/")
       toast.success('Login Successful!');
-    // }
-    // catch (err) {
-    //   dispatch({ type: "login_failure", payLoad: err?.message })
-    //   toast.error(err?.message);
-    //   console.log(err);
-    // }
-  }
+    }
+    catch (err) {
+      setError(true)
+      setLoading(false)
+      toast.error(err?.response?.data?.message);
+      console.log(err , "login me error he ");
+    }
 
-  const error = false;
-  const loading = false;
+  }
 
 
   return (
@@ -55,15 +55,21 @@ const Signin = () => {
 
         <h2 className={styles.heading}>Welcome Back</h2>
 
-        <form className={styles.form}>
+        <form onSubmit={loginBtnHandler} className={styles.form}>
 
-          <Input onChange={(e) => setEmail(e.target.value)} placeholder="Email" suffix={<UserOutlined />} />
+          <div className={styles.inputConatiner} >
+            <h4>Username</h4>
+            <Input onChange={(e) => setEmail(e.target.value)} placeholder="Email" suffix={<UserOutlined />} />
+          </div>
 
-          <Input.Password
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-          />
+          <div className={styles.inputConatiner} >
+            <h4>Password</h4>
+            <Input.Password
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+            />
+          </div>
 
           {/* Forgot and Join */}
           <div className={styles.linksRow}>
@@ -72,11 +78,7 @@ const Signin = () => {
           </div>
 
 
-          <Button onKeyDown={(e) => {
-            if (e.key === "Enter" && !loading && !error) {
-              loginBtnHandler(e);
-            }
-          }} onClick={ loginBtnHandler } type="primary" loading={loading} block> Login </Button>
+          <Button htmlType='submit' onClick={loginBtnHandler} type="primary" loading={loading} block> Login </Button>
 
           <Button block> Sign in with Google </Button>
 

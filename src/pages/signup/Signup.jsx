@@ -2,12 +2,13 @@ import s from './signup.module.scss'
 import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 // import { authContext } from '../../context/authContextApi';
-// import axios from 'axios';
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { EyeInvisibleOutlined, EyeTwoTone, UserOutlined } from '@ant-design/icons';
 import { Input, Button, Flex } from 'antd';
 import { IoLocationOutline } from 'react-icons/io5';
+import base_url from '../../utills/url';
 
 
 
@@ -15,39 +16,37 @@ import { IoLocationOutline } from 'react-icons/io5';
 const Signup = () => {
 
   const [userInputs, setUserInputs] = useState({})
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
   const navigate = useNavigate()
-  // const { dispatch, loading, error } = useContext(authContext)
 
   const userInputsHandler = (e) => {
     setUserInputs({ ...userInputs, [e.target.id]: e.target.value })
   }
 
+  console.log(userInputs, "user inputs");
+
   const signupBtnHandler = async (e) => {
 
-    console.log("signup pem click hua", userInputs);
     e.preventDefault()
-    // dispatch({ type: "login_start" })
+    setLoading(true)
+    setError(false)
 
-    // loading && toast.info('Please wait...');
+    try {
+      const res = await axios.post(`${base_url}/api/auth/signup`, userInputs)
+      console.log(res, "signup user res in login.jsx");
+      setLoading(false)
+      navigate("/emailVerification", { state: { email: userInputs.email } })
+      toast.info('Check Your Gmail');
+    }
+    catch (err) {
+      setLoading(false)
+      setError(true)
+      toast.error(err?.response?.data?.message);
+      console.log(err);
+    }
 
-    // try {
-    //   const res = await axios.post("http://localhost:8000/auth/login", { email, password } , {
-    //     withCredentials: true
-    //   })
-    //   console.log(res,  "login user res in login.jsx");
-    //   dispatch({ type: "login_success", payLoad: res?.data?.data?.loginUser?._doc })
-    // navigate("/")
-    toast.success('Signup Successful!');
-    // }
-    // catch (err) {
-    //   dispatch({ type: "login_failure", payLoad: err?.message })
-    //   toast.error(err?.message);
-    //   console.log(err);
-    // }
   }
-
-  const error = false;
-  const loading = false;
 
 
   return (
@@ -60,12 +59,12 @@ const Signup = () => {
 
         <form onSubmit={signupBtnHandler} className={s.form}>
 
-          <div>
+          <div  >
             <h4>Username</h4>
-            <Input onChange={userInputsHandler} placeholder="Username" id="username" suffix={<UserOutlined />} />
+            <Input onChange={userInputsHandler} placeholder="Username" id="userName" suffix={<UserOutlined />} />
           </div>
 
-          <div>
+          <div >
             <h4>Email</h4>
             <Input onChange={userInputsHandler} placeholder="Email" id="email" suffix={<UserOutlined />} />
           </div>
@@ -78,11 +77,6 @@ const Signup = () => {
               id="password"
               iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
-          </div>
-
-          <div>
-            <h4>Address</h4>
-            <Input onChange={userInputsHandler} id="address" placeholder="Address" suffix={<IoLocationOutline />} />
           </div>
 
           {/* Forgot and Join */}
