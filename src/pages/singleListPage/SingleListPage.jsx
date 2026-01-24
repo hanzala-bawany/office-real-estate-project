@@ -17,10 +17,10 @@ import { useParams } from 'react-router-dom';
 const SingleListPage = () => {
 
   const id = useParams().id
-  console.log(id);
+  // console.log(id);
 
   const activeItemData = data.filter((item) => item.id == id)
-  console.log(activeItemData, "active item data");
+  // console.log(activeItemData, "active item data");
 
 
 

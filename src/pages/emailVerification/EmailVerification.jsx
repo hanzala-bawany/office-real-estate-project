@@ -17,6 +17,11 @@ const EmailVerification = () => {
     const { email } = location.state
     console.log(email, "<--- email");
 
+    
+
+    
+
+
 
 
     const onInputChange = (e) => {

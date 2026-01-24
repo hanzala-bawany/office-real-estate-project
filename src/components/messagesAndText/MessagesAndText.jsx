@@ -11,7 +11,7 @@ const MessagesAndText = () => {
 
     return (
         <div className={s.messagesAndText}>
-
+            
             <div className={s.messagesContainer}>
 
                 <div className={s.messagesHeading}> Messages </div>

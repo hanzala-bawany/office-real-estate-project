@@ -7,6 +7,7 @@ const ProfilePage = () => {
 
   
   return (
+    
     <div className={s.profilePage}>
 
       <div className={s.leftSide}>
