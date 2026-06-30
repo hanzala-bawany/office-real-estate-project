@@ -16,13 +16,7 @@ const EmailVerification = () => {
     const location = useLocation();
     const { email } = location.state
     console.log(email, "<--- email");
-
-    
-
-    
-
-
-
+    console.l0g(location, "<--- location");
 
     const onInputChange = (e) => {
         setUserCode(e.target.value)

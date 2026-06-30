@@ -5,6 +5,9 @@ import MessagesAndText from "../../components/messagesAndText/MessagesAndText"
 
 const ProfilePage = () => {
 
+  const loginUserData = JSON.parse(localStorage.getItem("user"));
+  console.log(loginUserData, "login user data in profile page");
+
   
   return (
     

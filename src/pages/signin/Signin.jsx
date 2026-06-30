@@ -25,15 +25,17 @@ const Signin = () => {
 
   const loginBtnHandler = async (e) => {
 
-    console.log("login pem click hua", { email, password });
     e.preventDefault()
+
+    // console.log("login pem click hua", { email: emailValue, password: passwordValue });
 
     try {
       setError(false)
       setLoading(true)
       const res = await axios.post(`${base_url}/api/auth/login`, { email, password })
       setLoading(false)
-      console.log(res, "login user res in login.jsx");
+      // console.log(res, "login user res in login.jsx");
+      localStorage.setItem("user", JSON.stringify(res?.data?.data))
       navigate("/")
       toast.success('Login Successful!');
     }
@@ -41,10 +43,11 @@ const Signin = () => {
       setError(true)
       setLoading(false)
       toast.error(err?.response?.data?.message);
-      console.log(err , "login me error he ");
+      console.log(err, "login me error he ");
     }
 
   }
+
 
 
   return (
@@ -59,7 +62,9 @@ const Signin = () => {
 
           <div className={styles.inputConatiner} >
             <h4>Username</h4>
-            <Input onChange={(e) => setEmail(e.target.value)} placeholder="Email" suffix={<UserOutlined />} />
+            <Input name='email'
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email" suffix={<UserOutlined />} />
           </div>
 
           <div className={styles.inputConatiner} >
@@ -68,6 +73,7 @@ const Signin = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+              name='password'
             />
           </div>
 
@@ -87,6 +93,7 @@ const Signin = () => {
           }
 
         </form>
+
       </div>
     </div>
   );
