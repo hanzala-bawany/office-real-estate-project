@@ -2,13 +2,14 @@ import styles from './signin.module.css';
 import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 // import { authContext } from '../../context/authContextApi';
-// import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { EyeInvisibleOutlined, EyeTwoTone, UserOutlined } from '@ant-design/icons';
 import { Input, Button, Flex } from 'antd';
 import base_url from '../../utills/url';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../ReduxToolKit/authSlice';
 
 
 
@@ -22,6 +23,7 @@ const Signin = () => {
 
   // const { dispatch, loading, error } = useContext(authContext)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const loginBtnHandler = async (e) => {
 
@@ -36,6 +38,7 @@ const Signin = () => {
       setLoading(false)
       // console.log(res, "login user res in login.jsx");
       localStorage.setItem("user", JSON.stringify(res?.data?.data))
+      dispatch(setUser(res?.data?.data))
       navigate("/")
       toast.success('Login Successful!');
     }

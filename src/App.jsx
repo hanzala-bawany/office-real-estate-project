@@ -8,6 +8,7 @@ import ProfilePage from './pages/profilePage/ProfilePage'
 import Signup from './pages/signup/Signup'
 import Signin from './pages/signin/Signin'
 import EmailVerification from './pages/emailVerification/EmailVerification'
+import AppLayout from './layouts/AppLayout'
 
 function App() {
 
@@ -16,14 +17,16 @@ function App() {
     <>
       <Routes>
 
-        <Route path='/' element={<Home />} />
-        <Route path='/listPage' element={<ListPage />} />
-        <Route path='/listPage/:id' element={<SingleListPage />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/profile' element={<ProfilePage />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/signin' element={<Signin />} />
-        <Route path='/emailVerification' element={<EmailVerification />} />
+        <Route  element={<AppLayout />} >
+          <Route path='/' element={<Home />} />
+          <Route path='/listPage' element={<ListPage />} />
+          <Route path='/listPage/:id' element={<SingleListPage />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/signin' element={<Signin />} />
+          <Route path='/emailVerification' element={<EmailVerification />} />
+        </Route>
 
       </Routes>
     </>

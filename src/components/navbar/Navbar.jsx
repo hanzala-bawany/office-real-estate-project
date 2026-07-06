@@ -5,19 +5,23 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { AiTwotoneCloseCircle } from 'react-icons/ai';
 import { useState } from "react";
 import LogoutModal from "../ProfilePage/LogoutModal";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
 
   const [openMenu, setOpenMenu] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
+  // const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
+  const user = useSelector((state) => state?.authReducer?.user);
 
   console.log(user, "login user data in navbar");
+
 
 
   return (
     <>
       <div className={style.navbar}>
+
         <div className={style.leftNav}>
 
           <NavLink
@@ -42,7 +46,8 @@ const Navbar = () => {
               isActive ? `${style.active} ${style.link}` : style.link
             } to="/agents">Agents</NavLink>
 
-        </div>
+        </div> 
+
         <div className={style.rightNav}>
 
           {
@@ -51,7 +56,7 @@ const Navbar = () => {
 
                 <img src="https://avatars.githubusercontent.com/u/175537336?v=4" alt="" />
 
-                <span  onClick={() => setIsModalVisible(true)} className={`${style.name} cursor-pointer`}>{user?.userName}</span>
+                <span  onClick={() => setIsModalVisible(true)} className={`${style.name} cursor-pointer`}>{user?.userName || "usre Name"}</span>
 
                 <Link to="/profile">
                   <span className={style.profile}>
@@ -96,6 +101,7 @@ const Navbar = () => {
           </div>
 
         </div>
+        
       </div>
 
       {

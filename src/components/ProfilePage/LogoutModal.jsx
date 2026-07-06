@@ -4,11 +4,14 @@ import { LogoutOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {api} from '../../utills/api';
+import { logoutUser } from '../../ReduxToolKit/authSlice';
+import { useDispatch } from 'react-redux';
 
 const LogoutModal = ({isModalVisible , setIsModalVisible}) => {
 
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -24,7 +27,7 @@ const LogoutModal = ({isModalVisible , setIsModalVisible}) => {
 
       const res = await api.post('/api/auth/logout');
       // console.log(res, "........ logout response");
-      localStorage.removeItem('user');
+      dispatch(logoutUser())
       toast.success(res?.data?.message);
       navigate('/signin');
     }

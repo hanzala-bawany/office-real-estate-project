@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import Navbar from './components/navbar/Navbar.jsx'
 import "./layout.scss"
 import { ToastContainer } from 'react-toastify';
+import { store } from './ReduxToolKit/store.js'
+import { Provider } from 'react-redux'
 
 
 createRoot(document.getElementById('root')).render(
@@ -13,10 +15,9 @@ createRoot(document.getElementById('root')).render(
 
     <BrowserRouter>
 
-      <div className='layout'>
-        <Navbar />
+      <Provider store={store}>
         <App />
-      </div>
+      </Provider>
 
       <ToastContainer
         position="top-right"     // top-right, top-center, bottom-right, etc.
