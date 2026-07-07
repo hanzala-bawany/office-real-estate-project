@@ -15,12 +15,12 @@ createRoot(document.getElementById('root')).render(
 
     <BrowserRouter>
 
-      <Provider store={store}>
+      <Provider store={store}> 
         <App />
       </Provider>
 
       <ToastContainer
-        position="top-right"     // top-right, top-center, bottom-right, etc.
+        position="top-right"     // top-right, top-center, bottom-right, etc.  
         autoClose={3000}         // ms me close time
         hideProgressBar={false}  // progress bar dikhani ya nahi
         newestOnTop={false}      // latest toast upar ho ya niche

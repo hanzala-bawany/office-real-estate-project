@@ -6,6 +6,7 @@ import { AiTwotoneCloseCircle } from 'react-icons/ai';
 import { useState } from "react";
 import LogoutModal from "../ProfilePage/LogoutModal";
 import { useSelector } from "react-redux";
+import  avatar  from "../../assets/avatar.png";
 
 const Navbar = () => {
 
@@ -54,7 +55,7 @@ const Navbar = () => {
             user ?
               <div className={style.profileConatiner}>
 
-                <img src="https://avatars.githubusercontent.com/u/175537336?v=4" alt="" />
+                <img src={user?.avatara || avatar} alt="" />
 
                 <span  onClick={() => setIsModalVisible(true)} className={`${style.name} cursor-pointer`}>{user?.userName || "usre Name"}</span>
 
