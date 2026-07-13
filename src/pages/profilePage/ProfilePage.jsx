@@ -13,67 +13,68 @@ const ProfilePage = () => {
   const loginUserData = useSelector((state) => state?.authReducer?.user);
   console.log(loginUserData, "login user data in profile page");
 
-  
+
   return (
-    
-    <div className={s.profilePage}>
+    <>
+      <div className={s.profilePage}>
 
-      <div className={s.leftSide}>
+        <div className={s.leftSide}>
 
-        <div className={s.wrapper}>
+          <div className={s.wrapper}>
 
-          <div className={s.sameConatiner}>
-            <span>user information</span>
+            <div className={s.sameConatiner}>
+              <span>user information</span>
 
-            <button onClick={() => setShowUpdateModal(true)} >update profile</button>
-          </div>
-
-          <div className={s.userInfo}>
-
-            <div className={s.userPic}>
-              <span>profile pic :</span>
-              <img src={loginUserData?.avatar ? loginUserData?.avatar : noAvatar} alt="" />
+              <button onClick={() => setShowUpdateModal(true)} >update profile</button>
             </div>
 
-            <div className={s.userName}>
-              <span >Username :</span>
-              <p className={s.userNameP} >{loginUserData?.userName}</p>
+            <div className={s.userInfo}>
+
+              <div className={s.userPic}>
+                <span>profile pic :</span>
+                <img src={loginUserData?.avatar ? loginUserData?.avatar : noAvatar} alt="" />
+              </div>
+
+              <div className={s.userName}>
+                <span >Username :</span>
+                <p className={s.userNameP} >{loginUserData?.userName}</p>
+              </div>
+
+              <div className={s.userEmail}>
+                <span>UserEmail :</span>
+                <p>{loginUserData?.email}</p>
+              </div>
+
             </div>
 
-            <div className={s.userEmail}>
-              <span>UserEmail :</span>
-              <p>{loginUserData?.email}</p>
+            <div className={s.sameConatiner}>
+              <span>my list</span>
+
+              <button>add new list</button>
             </div>
 
+            <ProfileItemsList />
+
+            <div className={s.sameConatiner}>
+              <span>saved list</span>
+            </div>
+
+            <ProfileItemsList />
+
           </div>
 
-          <div className={s.sameConatiner}>
-            <span>my list</span>
+        </div>
 
-            <button>add new list</button>
+        <div className={s.rightSide}>
+
+          <div className={s.wrapper}>
+            <MessagesAndText />
           </div>
-
-          <ProfileItemsList />
-
-          <div className={s.sameConatiner}>
-            <span>saved list</span>
-          </div>
-
-          <ProfileItemsList />
 
         </div>
 
       </div>
-
-      <div className={s.rightSide}>
-
-        <div className={s.wrapper}>
-          <MessagesAndText />
-        </div>
-
-      </div>
-
-    </div>
+    </>
   )
 }
 
