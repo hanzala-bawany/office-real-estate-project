@@ -5,6 +5,7 @@ import MessagesAndText from "../../components/messagesAndText/MessagesAndText"
 import { useSelector } from "react-redux";
 import noAvatar from "../../assets/avatar.png"
 import { useState } from "react";
+import UpdateProfileModal from "../../components/ProfilePage/UpdateProfileModal";
 
 const ProfilePage = () => {
 
@@ -16,6 +17,9 @@ const ProfilePage = () => {
 
   return (
     <>
+
+      <UpdateProfileModal visible={showUpdateModal} onClose={ () => setShowUpdateModal(false) } />
+
       <div className={s.profilePage}>
 
         <div className={s.leftSide}>

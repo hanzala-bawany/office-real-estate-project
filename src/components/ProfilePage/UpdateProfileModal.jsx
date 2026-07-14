@@ -1,138 +1,145 @@
-import { useState } from "react";
-import { Modal, Form, Input, Button, Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import React, { useState } from 'react';
+import { Modal, Form, Input, Upload, Button, message } from 'antd';
+import { UploadOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 
-const UpdateProfileModal = ({ open, onCancel, onSubmit, initialValues }) => {
+const UpdateProfileModal = ({ visible, onClose, initialValues }) => {
 
     const [form] = Form.useForm();
-    const [preview, setPreview] = useState(initialValues?.image || "");
+    const [fileList, setFileList] = useState([]);
+    const [previewImage, setPreviewImage] = useState(initialValues?.profileImage || null);
 
-    const handleImageChange = ({ file }) => {
-        if (!file) return;
-
-        const originFile = file.originFileObj;
-
-        if (originFile) {
-            setPreview(URL.createObjectURL(originFile));
-        }
-    };
-
+    // Handle form submission
     const handleFinish = (values) => {
-        console.log(values);
 
-        const image = values.profileImage?.[0]?.originFileObj;
+        const formData = {
+            ...values,
+            profileImage: previewImage || null,
+        };
 
-        console.log({
-            username: values.username,
-            email: values.email,
-            image,
-        });
+        console.log(formData, " ....... formData");
+        handleReset();
 
-        onSubmit({
-            username: values.username,
-            email: values.email,
-            image,
-        });
     };
+
+    // Reset form and states
+    const handleReset = () => {
+        form.resetFields();
+        setFileList([]);
+        setPreviewImage(initialValues?.profileImage || null);
+        onClose();
+    };
+
+    // Handle upload change
+    const handleUploadChange = ({ file }) => {
+
+        const img = file?.originFileObj
+        const url = URL.createObjectURL(img)
+        setPreviewImage(url)
+
+    };
+
+
 
     return (
         <Modal
-            open={open}
             title="Update Profile"
+            open={visible}
+            onCancel={handleReset}
             footer={null}
-            onCancel={onCancel}
-            centered
-            destroyOnClose
+            width={500}
+            className="update-profile-modal"
         >
+            <div className="p-4">
 
-            <Form
-                form={form}
-                layout="vertical"
-                initialValues={{
-                    username: initialValues?.username,
-                    email: initialValues?.email,
-                }}
-                onFinish={handleFinish}
-            >
-
-                {/* Image Preview */}
+                {/* Profile Image Preview */}
                 <div className="flex justify-center mb-6">
-                    <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-300">
-                        {preview ? (
+                    <div className="relative">
+                        {previewImage ? (
                             <img
-                                src={preview}
+                                src={previewImage}
                                 alt="Profile Preview"
-                                className="w-full h-full object-cover"
+                                className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-lg"
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-                                No Image
+                            <div className="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center border-4 border-gray-300">
+                                <UserOutlined className="text-4xl text-gray-400" />
                             </div>
                         )}
                     </div>
                 </div>
 
-                {/* File Input */}
-                <Form.Item
-                    label="Profile Image"
-                    name="profileImage"
-                    valuePropName="fileList"
-                    getValueFromEvent={(e) => e?.fileList}
+                <Form
+                    form={form}
+                    layout="vertical"
+                    onFinish={handleFinish}
+                    initialValues={{
+                        username: initialValues?.username || '',
+                        email: initialValues?.email || '',
+                    }}
+                    className="space-y-4"
                 >
-                    <Upload
-                        beforeUpload={() => false} // file upload nahi karega
-                        maxCount={1}
-                        listType="text"
-                        accept="image/*"
-                        onChange={handleImageChange}
+                    {/* Username Input */}
+                    <Form.Item
+                        name="username"
+                        label="Username"
+                        rules={[
+                            { required: true, message: 'Please enter your username!' },
+                            { min: 3, message: 'Username must be at least 3 characters!' },
+                        ]}
                     >
-                        <Button icon={<UploadOutlined />}>
-                            Select Image
+                        <Input
+                            prefix={<UserOutlined className="text-gray-400" />}
+                            placeholder="Enter username"
+                            size="large"
+                            className="rounded-lg"
+                        />
+                    </Form.Item>
+
+                    {/* Email Input */}
+                    <Form.Item
+                        name="email"
+                        label="Email"
+                        rules={[
+                            { required: true, message: 'Please enter your email!' },
+                            { type: 'email', message: 'Please enter a valid email!' },
+                        ]}
+                    >
+                        <Input
+                            prefix={<MailOutlined className="text-gray-400" />}
+                            placeholder="Enter email"
+                            size="large"
+                            className="rounded-lg"
+                        />
+                    </Form.Item>
+
+                    {/* Upload Image */}
+                    <Form.Item
+                        label="Profile Image"
+                        name="profileImage"
+                    >
+                        <Upload onRemove={() => setPreviewImage(null)} onChange={handleUploadChange}>
+                            <Button icon={<UploadOutlined />} className="w-full">
+                                Upload Image
+                            </Button>
+                        </Upload>
+                        <div className="text-xs text-gray-400 mt-1">
+                            Supported formats: JPG, PNG, GIF (Max 2MB)
+                        </div>
+                    </Form.Item>
+
+                    {/* Form Actions */}
+                    <div className="flex justify-end space-x-3 m-5  gap-2">
+                        <Button onClick={handleReset} size="large">
+                            Cancel
                         </Button>
-                    </Upload>
-                </Form.Item>
+                        <Button type="primary" htmlType="submit" size="large">
+                            Update Profile
+                        </Button>
+                    </div>
 
-                {/* Username */}
-                <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please enter username",
-                        },
-                    ]}
-                >
-                    <Input placeholder="Enter username" />
-                </Form.Item>
+                </Form>
 
-                {/* Email */}
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please enter email",
-                        },
-                        {
-                            type: "email",
-                            message: "Enter valid email",
-                        },
-                    ]}
-                >
-                    <Input placeholder="Enter email" />
-                </Form.Item>
-
-                <Button
-                    htmlType="submit"
-                    type="primary"
-                    className="w-full"
-                >
-                    Update Profile
-                </Button>
-
-            </Form>
+            </div>
         </Modal>
     );
 };
