@@ -12,13 +12,13 @@ const ProfilePage = () => {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   const loginUserData = useSelector((state) => state?.authReducer?.user);
-  console.log(loginUserData, "login user data in profile page");
+  // console.log(loginUserData, "login user data in profile page");
 
 
   return (
     <>
 
-      <UpdateProfileModal visible={showUpdateModal} onClose={ () => setShowUpdateModal(false) } />
+      <UpdateProfileModal visible={showUpdateModal} onClose={ () => setShowUpdateModal(false) } loginUserData={loginUserData} />
 
       <div className={s.profilePage}>
 

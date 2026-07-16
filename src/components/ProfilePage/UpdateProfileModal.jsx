@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Modal, Form, Input, Upload, Button, message } from 'antd';
 import { UploadOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 
-const UpdateProfileModal = ({ visible, onClose, initialValues }) => {
+const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
 
     const [form] = Form.useForm();
     const [fileList, setFileList] = useState([]);
-    const [previewImage, setPreviewImage] = useState(initialValues?.profileImage || null);
+    const [previewImage, setPreviewImage] = useState(loginUserData?.avatar || null);
 
     // Handle form submission
     const handleFinish = (values) => {
@@ -25,7 +25,7 @@ const UpdateProfileModal = ({ visible, onClose, initialValues }) => {
     const handleReset = () => {
         form.resetFields();
         setFileList([]);
-        setPreviewImage(initialValues?.profileImage || null);
+        setPreviewImage(null);
         onClose();
     };
 
@@ -37,6 +37,8 @@ const UpdateProfileModal = ({ visible, onClose, initialValues }) => {
         setPreviewImage(url)
 
     };
+
+     console.log(loginUserData, "login user data in  update profile");
 
 
 
@@ -73,11 +75,12 @@ const UpdateProfileModal = ({ visible, onClose, initialValues }) => {
                     layout="vertical"
                     onFinish={handleFinish}
                     initialValues={{
-                        username: initialValues?.username || '',
-                        email: initialValues?.email || '',
+                        username: loginUserData?.userName || '',
+                        email: loginUserData?.email || '',
                     }}
                     className="space-y-4"
                 >
+
                     {/* Username Input */}
                     <Form.Item
                         name="username"
