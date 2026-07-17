@@ -5,18 +5,24 @@ import { UploadOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
 
     const [form] = Form.useForm();
-    const [fileList, setFileList] = useState([]);
     const [previewImage, setPreviewImage] = useState(loginUserData?.avatar || null);
+    const [imgFile, setImgFile] = useState(null);
 
     // Handle form submission
     const handleFinish = (values) => {
 
         const formData = {
             ...values,
-            profileImage: previewImage || null,
+            profileImage: imgFile || null,
         };
 
         console.log(formData, " ....... formData");
+
+        const fd = new FormData();
+        fd.append('username', values.username);
+        fd.append('email', values.email);
+        if (imageFile) fd.append('profileImage', imageFile);
+
         handleReset();
 
     };
@@ -24,7 +30,7 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
     // Reset form and states
     const handleReset = () => {
         form.resetFields();
-        setFileList([]);
+        setImgFile(null)
         setPreviewImage(null);
         onClose();
     };
@@ -32,13 +38,21 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
     // Handle upload change
     const handleUploadChange = ({ file }) => {
 
-        const img = file?.originFileObj
-        const url = URL.createObjectURL(img)
-        setPreviewImage(url)
+        if (file.status === 'removed') {
+            setImgFile(null)
+            setPreviewImage(null);
+            return;
+        }
+
+        const img = file?.originFileObj;
+        if (img) {
+            setImgFile(img)
+            const url = URL.createObjectURL(img);
+            setPreviewImage(url);
+        }
 
     };
 
-     console.log(loginUserData, "login user data in  update profile");
 
 
 
@@ -74,6 +88,9 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
                     form={form}
                     layout="vertical"
                     onFinish={handleFinish}
+                    onFinishFailed={(errorInfo) => {
+                        console.log('Validation Failed:', errorInfo);
+                    }}
                     initialValues={{
                         username: loginUserData?.userName || '',
                         email: loginUserData?.email || '',
@@ -120,7 +137,11 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
                         label="Profile Image"
                         name="profileImage"
                     >
-                        <Upload onRemove={() => setPreviewImage(null)} onChange={handleUploadChange}>
+
+                        <Upload
+                            maxCount={1}
+                            onChange={handleUploadChange}
+                        >
                             <Button icon={<UploadOutlined />} className="w-full">
                                 Upload Image
                             </Button>
@@ -128,6 +149,7 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
                         <div className="text-xs text-gray-400 mt-1">
                             Supported formats: JPG, PNG, GIF (Max 2MB)
                         </div>
+
                     </Form.Item>
 
                     {/* Form Actions */}
