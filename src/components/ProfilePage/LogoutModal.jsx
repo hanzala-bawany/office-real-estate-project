@@ -27,9 +27,9 @@ const LogoutModal = ({isModalVisible , setIsModalVisible}) => {
 
       const res = await api.post('/api/auth/logout');
       // console.log(res, "........ logout response");
+      navigate('/signin');
       dispatch(logoutUser())
       toast.success(res?.data?.message);
-      navigate('/signin');
     }
     catch(err){
       console.error('Error during logout:', err);

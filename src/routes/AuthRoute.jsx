@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
             toast.warning("You have to login first")
         }
 
-    }, [user])
+    }, [user]) 
 
 
    return (

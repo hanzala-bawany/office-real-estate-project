@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Form, Input, Upload, Button, message } from 'antd';
-import { UploadOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
+import { UploadOutlined, UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 
 const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
 
@@ -11,17 +11,17 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
     // Handle form submission
     const handleFinish = (values) => {
 
-        const formData = {
-            ...values,
-            profileImage: imgFile || null,
-        };
+        // const formattedData = {
+        //     ...values,
+        //     profileImage: imgFile || null,
+        // };
 
-        console.log(formData, " ....... formData");
+        // console.log(formattedData, " ....... formattedData");
 
-        const fd = new FormData();
-        fd.append('username', values.username);
-        fd.append('email', values.email);
-        if (imageFile) fd.append('profileImage', imageFile);
+        const formData = new FormData();
+        formData.append('username', values.username);
+        formData.append('email', values.email);
+        if (imgFile) formData.append('profileImage', imgFile);
 
         handleReset();
 
@@ -54,8 +54,7 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
     };
 
 
-
-
+    
     return (
         <Modal
             title="Update Profile"
@@ -132,6 +131,23 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
                         />
                     </Form.Item>
 
+                    {/* password Input */}
+                    <Form.Item
+                        name="password"
+                        label="Password"
+                        rules={[
+                            { required: true, message: "Please enter your password!" },
+                            { min: 6, message: "Password must be at least 6 characters!" },
+                        ]}
+                    >
+                        <Input.Password
+                            prefix={<LockOutlined className="text-gray-400" />}
+                            placeholder="Enter password"
+                            size="large"
+                            className="rounded-lg"
+                        />
+                    </Form.Item>
+
                     {/* Upload Image */}
                     <Form.Item
                         label="Profile Image"
@@ -141,6 +157,10 @@ const UpdateProfileModal = ({ visible, onClose, loginUserData }) => {
                         <Upload
                             maxCount={1}
                             onChange={handleUploadChange}
+                            accept="image/*"
+                            // accept=".jpg,.jpeg,.png,.jfif,.gif"
+                            listType="picture"
+                        // listType="picture-card"
                         >
                             <Button icon={<UploadOutlined />} className="w-full">
                                 Upload Image
